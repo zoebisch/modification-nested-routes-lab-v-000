@@ -1,9 +1,11 @@
 module SongsHelper
 
   def artist_select(song, artist)
-    #test was really unclear where this should fit in.  Sincd there is no further test other than it looks for two variables,
-    #I am not sure where to go with this?
-    binding.pry
+    if song.artist.nil?
+      collection_select(song, :artist_id, Artist.all, :id, :name)
+    else
+      hidden_field_tag "song[artist_id], song.artist_id"
+    end
   end
 
 end
